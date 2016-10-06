@@ -1,0 +1,20 @@
+#PBS -l nodes=1:nehalem:ppn=1
+#PBS -l walltime=00:50:00
+#PBS -l mem=1gb
+#PBS -N ulmann_seq_1cpu_8_20_005
+#PBS -S /bin/bash
+#PBS -j oe
+
+source /g/home/yunhong/Ulmann_sequencial/setup_env.sh
+# $PBS_O_WORKDIR is the directory from which the job was submitted
+cd /g/home/yunhong/Ulmann_sequencial
+
+./ulmann_seq -p 4 -b 20 -r 005 -g 00
+./ulmann_seq -p 4 -b 20 -r 005 -g 01
+./ulmann_seq -p 4 -b 20 -r 005 -g 02
+./ulmann_seq -p 4 -b 20 -r 005 -g 03
+./ulmann_seq -p 4 -b 20 -r 005 -g 04
+
+
+# output from the runs will be in ulmann_seq_1cpu.o#### where #### is the job id.
+#---------------- end of job file --------------------------

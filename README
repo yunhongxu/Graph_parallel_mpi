@@ -1,0 +1,62 @@
+**************************************
+CSCE 626 project 
+Sequential algorithm for Ullman Algorithm in real case.
+If find a match, then return and terminate the program.
+**************************************
+
+List of files
+==================
+
+setup_env.sh This file is used to setup the environment to compile and run MPI and
+             OpenMP programs on Eos. Make sure you execute the following command
+             from your current shell
+             $ source <path to setup_env.sh> setup_env.sh
+             before you try to compile/run. A good practice is to place the above
+             line in your ~/.bashrc
+
+ulmann.h: head file for all functions used by main, including recursive ullman algorithm, prune algorithm, marix computation and so on.
+
+ulmann.cpp: implementation of functions defined in ulmann.h.
+
+ulmann_seq.cpp: main function to implement the sequential algorithm.
+
+Makefile: File for compilation of the code files and clean up of the executables.
+
+Set readfile directory
+==================
+ulmann_seq.cpp: set "graphsdb/si" to be the correct directory where the graphsdb locate, or copy one 'graphsdb' to current directory.
+
+ss << "graphsdb/si" << pvalue << "/rand/r" << rvalue <<"/si" << pvalue << "_r" << rvalue << "_s" << bvalue << ".A" << gvalue;
+Compiling on Eos
+==================
+$ make
+
+
+This will generate 1 executable ulmann_seq.
+
+Running Interactively on Eos
+============================
+Run the following command:
+./ulmann_seq -p 2 -b 20 -r 001 -g 00
+./ulmann_seq -p 2 -b 20 -r 005 -g 01
+
+p b r g are parameters to read graph file.
+
+p: the persentage of small graph size of the big graph size, here we use 2 4 6 doneting 20% 40% 60%.
+
+b: big graph node number, for Sequential Ullman algorithm we can use 20 and 40, for Ulmann algorithm with distance, we can use [20 40 60 80 100].
+
+r: the probability of two nodes connect with each other in big graph, here we use 001, 005, 01 denoting the probabilities are 0.01, 0.05 and 0.1 respectively.
+
+g: the 00th graph, range is [00-99]
+
+
+Submit files to eos using bash command
+============================
+The bash file is in directory /seq_bash
+
+Submit a single file:
+qsub seq_1cpu_8_20_01.job
+
+submit two files 32 times:
+source submit_helper.sh
